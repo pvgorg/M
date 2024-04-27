@@ -1,7 +1,22 @@
 import telebot
-bot = telebot.TeleBot("6153975130:AAFkPPUqX6mCcCxfvYkIurJHl6o2yIUu9yc")
-@bot.message_handler(func=lambda message: True)
-def logo(message):
-    logo = f"https://bcassetcdn.com/asset/logo/4b4b23e4-f3d3-42b1-9c5d-615ac62ef5ac/logo?v=4&text={message.text}"
-    bot.send_photo(message.chat.id, logo)
-bot.infinity_polling()
+
+TOKEN = '6153975130:AAFkPPUqX6mCcCxfvYkIurJHl6o2yIUu9yc'
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.reply_to(message, "Welcome! Use /mute to mute a user and /unmute to unmute a user.")
+
+@bot.message_handler(commands=['mute'])
+def mute_user(message):
+    chat_id = message.chat.id
+    user_id = message.reply_to_message.from_user.id
+    bot.restrict_chat_member(chat_id, user_id, until_date=0)
+
+@bot.message_handler(commands=['unmute'])
+def unmute_user(message):
+    chat_id = message.chat.id
+    user_id = message.reply_to_message.from_user.id
+    bot.restrict_chat_member(chat_id, user_id, until_date=None)
+
+bot.polling()

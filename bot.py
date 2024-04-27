@@ -13,11 +13,11 @@ from pyrogram import Client, filters, idle , errors ,enums
 from pyrogram.types import Message , ChatPermissions
 from pyrogram.raw import functions , base , types
 import time
-api_id = "28985578"   API ID
-api_hash = "5addd97449443afcc7240bffe9dbbf8a"  HASH ID
+api_id = "28985578" 
+api_hash = "5addd97449443afcc7240bffe9dbbf8a" 
 app = Client("@shothesam",api_id,api_hash)
-admin = "1502490631" # ADMIN ID
- # به چیز دیگه ای دست نزنید #
+admin = "1502490631" 
+
 
 if not os.path.isfile("Mode.json"):
  with open("Mode.json" , "w") as fjr:
